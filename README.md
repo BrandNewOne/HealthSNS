@@ -11,28 +11,37 @@
 
 ### 2. 기능소개
 #### 2-1 로그인 및 회원가입
-<figure class="image">
-    <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/로그인.png" width="100" height="130"/>
-    <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/회원가입.png" width="100" height="130"/>
-    <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/중복확인.png" width="100" height="130"/>
-    <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/회원정보 수정.png" width="100" height="130"/>
-</figure>
+ - 로그인
+ - 회원가입
+    - 메일인증 필요
+
+![image.jpg1](/Image/로그인.png)|![image.jpg1](/Image/회원가입.png)|![image.jpg1](/Image/중복확인.png)|![image.jpg1](/Image/%ED%9A%8C%EC%9B%90%EC%A0%95%EB%B3%B4%20%EC%88%98%EC%A0%95.png)
+--- | --- | --- | --- | 
+
+
 
 #### 2-2. 게시글
-<figure class="image">
-    <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/게시글 등록.png" width="100" height="130"/>
-    <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/게시글 수정.png" width="100" height="130"/>
-    <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/게시글.png" width="100" height="130"/>
-    <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/검색.png" width="100" height="130"/>
-    <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/좋아요 보기.png" width="100" height="130"/>
-    <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/메인화면.png" width="100" height="130"/>
-</figure>
+- 게시글
+    - 좋아요
+    - 게시글 검색
+    - 좋아요 누른 게시글만 보기 
+- 게시글 등록
+    - 이미지 업로드 가능
+- 게시글 수정
+
+![image.jpg1](/Image/%EA%B2%8C%EC%8B%9C%EA%B8%80%20%EB%93%B1%EB%A1%9D.png)|![image.jpg1](/Image/%EA%B2%8C%EC%8B%9C%EA%B8%80%20%EC%88%98%EC%A0%95.png)|![image.jpg1](/Image/게시글.png)|![image.jpg1](/Image/검색.png)|![image.jpg1](/Image/%EC%A2%8B%EC%95%84%EC%9A%94%20%EB%B3%B4%EA%B8%B0.png)|![image.jpg1](/Image/메인화면.png)
+--- | --- | --- | --- | --- | --- |
 
 #### 2-3. 관리
-<figure class="image">
-    <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/먹은음식.png" width="100" height="130"/>
-    <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/차트.png" width="100" height="130"/>
-</figure>
+- 음식등록
+    - 처음등록하는 음식은 정보를 모두 입력
+    - 2번째 등록 부터는 음식이름, 먹은 음식 그램 만 입력해도 등록 가능
+- 차트보기
+    - Pie 차트 : 기간동안 칼로리
+    - Bar 차트 : 성분 상세보기
+
+![image.jpg1](/Image/먹은음식.png)|![image.jpg1](/Image/차트.png)
+--- | --- | 
 
 ----
 ## 기술스택
@@ -55,3 +64,4 @@
 1. 음식과 식사 1:N 관계로 설계하였으나 이렇게 될 경우 나만의 음식을 저장할수없음
 2. 비밀번호 확인 추가
 3. 식사 입력 시 스크립트 기능 추가
+4. 댓글기능 추가
