@@ -10,8 +10,10 @@
  - 먹은 음식을 공유하고 기록 할수있는 SNS
 
 ### 2. 기능소개
-#### 2-1 로그인 및 회원가입
-<img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/로그인.png" width="200" height="100"/>
+#### 2-1 로그인, 회원가입, 회원 수정
+<img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/로그인.png" width="100" height="130"/>
+<img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/회원가입.png" width="100" height="130"/>
+<img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/회원정보 수정.png" width="100" height="130"/>
 #### 2-2. 게시글
 #### 2-3. 관리
 ----
