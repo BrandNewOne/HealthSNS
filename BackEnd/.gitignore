@@ -1,0 +1,11 @@
+.DS_Store
+build
+out
+gradle
+src/test
+src/main/generated
+src/main/resources/application.yml
+gradlew.bat
+settings.gradle
+gradlew
+src/main/java/com/brandnew/saw/z
