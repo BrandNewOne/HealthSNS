@@ -11,9 +11,11 @@
 
 ### 2. 기능소개
 #### 2-1 로그인, 회원가입, 회원 수정
-<img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/로그인.png" width="100" height="130"/>
-<img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/회원가입.png" width="100" height="130"/>
-<img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/회원정보 수정.png" width="100" height="130"/>
+<figure class="third">
+ <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/로그인.png" width="100" height="130"/>
+ <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/회원가입.png" width="100" height="130"/>
+ <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/회원정보 수정.png" width="100" height="130"/>
+ </figure>
 #### 2-2. 게시글
 #### 2-3. 관리
 ----
