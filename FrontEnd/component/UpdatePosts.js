@@ -129,7 +129,7 @@ export default function UpdatePosts(){
 
     return(
         <div>
-            <h1>게시글 수정</h1>
+            <h1>{show ? '게시글 수정': '게시글'}</h1>
             <div className="col-md-12">
                 <div className="col-md-4">
                 {show &&<FileUpdate /> }
@@ -157,7 +157,7 @@ export default function UpdatePosts(){
                                 onChange={(e)=>{
                                     SetTitle(e.target.value);
                         }} 
-                        />
+                        readOnly={!show} />
                     </div>
 
                     {imageMapList && <div className="form-group">
@@ -188,7 +188,7 @@ export default function UpdatePosts(){
                                 value={content} 
                                 onChange={(e)=>{
                                     SetContent(e.target.value);
-                        }} 
+                        }} readOnly={!show}
                         />
             </div>
             <button className="btn btn-secondary" onClick={() => {navigate(-1);}}>취소</button>

@@ -72,7 +72,7 @@ public class PostsRepositoryImpl {
                 .select(Projections.constructor(PostsListResponseDto.class,posts, user))
                 .from(posts)
                 .leftJoin(user).on(posts.uid.eq(user.id))
-                .where(posts.title.like(search))
+                .where(posts.title.contains(search))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .orderBy(posts.id.desc())
@@ -83,7 +83,7 @@ public class PostsRepositoryImpl {
         double count =  queryFactory
                 .select(posts.count())
                 .from(posts)
-                .where(posts.title.like(search))
+                .where(posts.title.contains(search))
                 .fetch().get(0);
 
         return (long) Math.ceil(count/Double.valueOf(pageable.getPageSize()));
@@ -95,7 +95,7 @@ public class PostsRepositoryImpl {
                 .from(posts)
                 .leftJoin(user).on(posts.uid.eq(user.id))
                 .leftJoin(likeIt).on(posts.id.eq(likeIt.postsId))
-                .where(likeIt.uid.eq(uid).and(likeIt.postsId.eq(posts.id)).and(posts.title.like(search)))
+                .where(likeIt.uid.eq(uid).and(likeIt.postsId.eq(posts.id)).and(posts.title.contains(search)))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .orderBy(posts.id.desc())
@@ -107,7 +107,7 @@ public class PostsRepositoryImpl {
                 .select(posts.count())
                 .from(posts)
                 .leftJoin(likeIt).on(posts.id.eq(likeIt.postsId))
-                .where(likeIt.uid.eq(uid).and(likeIt.postsId.eq(posts.id)).and(posts.title.like(search)))
+                .where(likeIt.uid.eq(uid).and(likeIt.postsId.eq(posts.id)).and(posts.title.contains(search)))
                 .fetch().get(0);
 
         return (long) Math.ceil(count/Double.valueOf(pageable.getPageSize()));
