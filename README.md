@@ -11,6 +11,7 @@
 
 ### 2. 기능소개
 #### 2-1 로그인 및 회원가입
+<img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/로그인.png" width="200" height="100"/>
 #### 2-2. 게시글
 #### 2-3. 관리
 ----
