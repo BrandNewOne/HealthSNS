@@ -15,7 +15,8 @@
  <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/로그인.png" width="100" height="130"/>
  <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/회원가입.png" width="100" height="130"/>
  <img src="https://github.com/BrandNewOne/HealthSNS/blob/main/Image/회원정보 수정.png" width="100" height="130"/>
- </figure>
+</figure>
+
 #### 2-2. 게시글
 #### 2-3. 관리
 ----
