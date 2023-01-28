@@ -46,18 +46,18 @@
 ----
 ## 기술스택
  - BackEnd
-    1. SpringBoot MVC
-    2. MySQL & Redis
-    3. JPA & QueryDsl
-    4. Spring Security & JWT
-    5. STMP
+    - SpringBoot MVC
+    - MySQL & Redis
+    - JPA & QueryDsl
+    - Spring Security & JWT
+    - STMP
 
 - FrontEnd
-    1. React & React-router
-    2. Chart.JS
-    3. Redux
-    4. Axios & Proxy
-    5. Bootstrap
+    - React & React-router
+    - Chart.JS
+    - Redux
+    - Axios & Proxy
+    - Bootstrap
 ----
 
 ## V2 계획
@@ -65,3 +65,4 @@
 2. 비밀번호 확인 추가
 3. 식사 입력 시 스크립트 기능 추가
 4. 댓글기능 추가
+5. 에러페이지 추가
