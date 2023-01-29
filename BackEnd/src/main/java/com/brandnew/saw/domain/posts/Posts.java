@@ -41,4 +41,10 @@ public class Posts extends BaseTimeEntity {
         this.content = content;
     }
 
+    public void update(String title, String content, Long imageId){
+        this.title = title;
+        this.content = content;
+        this.imageId = imageId;
+    }
+
 }

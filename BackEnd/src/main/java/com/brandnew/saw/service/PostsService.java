@@ -25,8 +25,8 @@ public class PostsService {
     private final ImageFileRepository imageFileRepository;
 
     @Transactional
-    public void save(PostsSaveRequestDto postsSaveRequestDto){
-        postsRepository.save(postsSaveRequestDto.toEntity());
+    public void save(PostsSaveRequestDto requestDto){
+        postsRepository.save(requestDto.toEntity());
     }
 
     @Transactional
@@ -35,7 +35,12 @@ public class PostsService {
                 () -> new BadRequestException("해당 게시글이 없습니다.")
         );
 
-        posts.update(requestDto.getTitle(), requestDto.getContent());
+        if(posts.getImageId() != null) {
+            posts.update(requestDto.getTitle(), requestDto.getContent());
+        }
+        else {
+            posts.update(requestDto.getTitle(), requestDto.getContent(), requestDto.getImageId());
+        }
     }
 
     public Map<String, Object> findByPostsId(Long id){

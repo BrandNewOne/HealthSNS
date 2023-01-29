@@ -39,10 +39,9 @@ public class PostsRestController {
 
     @PutMapping("update")
     public ResponseEntity<Map<String, Object>> updatePosts(@RequestParam Long postsId, @RequestBody PostsUpdateRequestDto requestDto) {
-        System.out.println("uid: "+requestDto.getUid());
         postsService.update(postsId, requestDto);
 
-        return new ResponseEntity<>(postsService.findByPostsId(postsId), HttpStatus.OK);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @GetMapping("update")

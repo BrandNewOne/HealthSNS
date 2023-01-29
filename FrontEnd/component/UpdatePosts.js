@@ -16,6 +16,7 @@ export default function UpdatePosts(){
     const params = new URLSearchParams(window.location.search);
     let id = params.get('id');
     const uid = useSelector(state => {return state.authUser.id}); 
+    const { dump } = useSelector(state => {return state.authUser}); 
 
     const baseAxios = async () =>{
         try{
@@ -42,10 +43,6 @@ export default function UpdatePosts(){
         }
     } 
 
-    useEffect(() => {
-        baseAxios();
-    }, []);
-
     const [data, setData] = useState([{
         id: '',
         title: '',
@@ -66,10 +63,17 @@ export default function UpdatePosts(){
     useEffect(() => {
     }, [imageMapList]);
 
+    useEffect(() => {
+        baseAxios();
+    }, []);
+
+    useEffect(() => {
+    }, [dump]);
+
     const savePosts = async () => {
         try{
             await CustomAxios.put(`${API.POSTSUPDATE}`,
-                                   {title:title, content:content, uid:id},
+                                   {title:title, content:content, uid:id, imageId:dump},
                                    {params:{postsId:id}});
 
             alert('글이 수정되었습니다.');

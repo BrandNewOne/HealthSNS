@@ -51,7 +51,11 @@ public class FileService {
         Posts posts = postsRepository.findById(fileUpdateRequestDto.getPostsId()).orElseThrow(
                 () -> new BadRequestException("해당 게시글이 없습니다.")
         );
-        long setImageId = posts.getImageId();
+
+        Long setImageId = posts.getImageId();
+        if (setImageId == null){
+            setImageId = posts.getId();
+        }
         if (!(fileUpdateRequestDto.getFiles() == null)) {
             saveFile(fileUpdateRequestDto.getFiles(), posts.getUid(), setImageId);
         }
