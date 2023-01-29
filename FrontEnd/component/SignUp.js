@@ -2,31 +2,30 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
-import { useSelector, useDispatch } from 'react-redux';
-import { getCookieToken } from '../storage/Cookie';
-
 
 export default function SginUp(){
 
   const navigate = useNavigate();
   
   const SaveSignup = async () => {
-    try {
-      await axios.post(
-        '/users/save',
-        {
-          email: email,
-          name: name,
-          password: password
-        }
-      );
+    if(checkPassword == password){
+      try {
+        await axios.post(
+          '/users/save',
+          {
+            email: email,
+            name: name,
+            password: password
+          }
+        );
 
-      alert('회원가입 되었습니다.');
-      navigate('/signIn');
+        alert('회원가입 되었습니다.');
+        navigate('/signIn');
 
-    } catch (error) {
-      console.log(error);
-      SetErrorMessage(error.response.data.message);
+      } catch (error) {
+        console.log(error);
+        SetErrorMessage(error.response.data.message);
+      }
     }
   };
 
@@ -89,6 +88,17 @@ export default function SginUp(){
   const [errorMessage, SetErrorMessage] = useState("");
 
   const [authState, SetAuthState] = useState(false);
+  const [checkPassword, SetCheckPassword] = useState("");
+
+  useEffect(() => {
+    if(checkPassword != password){
+      SetErrorMessage("비밀번호와 비밀번호 확인이 다릅니다.");
+    }
+    else{
+      SetErrorMessage("");
+    }
+}, [password, checkPassword]);
+  
 
   return (
     <div>
@@ -129,11 +139,20 @@ export default function SginUp(){
           <div className="form-group">
             <label htmlFor="password">비밀번호</label>
             <input type="password" className="form-control"
-              id="password" placeholder="비밀번호를 입력하세요"
-              onChange={(e)=>{
-                SetPassword(e.target.value);
+                    id="password" placeholder="비밀번호를 입력하세요"
+                    onChange={(e)=>{
+                      SetPassword(e.target.value);
               }} 
               />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">비밀번호 확인</label>
+            <input type="password" className="form-control"
+                  placeholder="비밀번호를 다시 입력하세요" 
+                  onChange={(e)=>{
+                    SetCheckPassword(e.target.value);
+            }}/>
           </div>
 
         <Link to="/signIn" role="button" className="btn btn-secondary" id="btn-secondary">취소</Link>
