@@ -1,11 +1,14 @@
 package com.brandnew.saw.service;
 
+import com.brandnew.saw.domain.comment.CommentRepository;
+import com.brandnew.saw.domain.comment.CommentRepositoryCustom;
 import com.brandnew.saw.domain.file.ImageFileRepository;
 import com.brandnew.saw.domain.likeit.LikeIt;
 import com.brandnew.saw.domain.likeit.LikeItRepository;
 import com.brandnew.saw.domain.posts.Posts;
 import com.brandnew.saw.domain.posts.PostsRepository;
 import com.brandnew.saw.exception.BadRequestException;
+import com.brandnew.saw.web.dto.comment.PostsCommentsListResponseDto;
 import com.brandnew.saw.web.dto.file.GetImageNameDto;
 import com.brandnew.saw.web.dto.posts.*;
 import jakarta.transaction.Transactional;
@@ -23,6 +26,7 @@ public class PostsService {
     private final PostsRepository postsRepository;
     private final LikeItRepository likeItRepository;
     private final ImageFileRepository imageFileRepository;
+    private final CommentRepository commentRepository;
 
     @Transactional
     public void save(PostsSaveRequestDto requestDto){
@@ -66,8 +70,8 @@ public class PostsService {
             entity.setLikeState(true);
         }
 
+        //이미지 setter
         if(entity.getImageId() != null) {
-            //이미지 setter
             List<GetImageNameDto> imageName = imageFileRepository.findByImageSaveName(entity.getImageId());
 
             List<Map<String, String>> imageMapName = imageName.stream().map(e -> Map.of("saveName",e.getSavedNm(),"originName",e.getOrgNm())).collect(Collectors.toList());
@@ -75,7 +79,6 @@ public class PostsService {
             if (!imageMapName.isEmpty()) {
                 entity.setImageMapName(imageMapName);
             }
-
         }
 
         Map<String, Object> result = new HashMap<>();

@@ -9,6 +9,8 @@ import FileUpdate from './FileUpdate';
 
 import { SET_ImageFileList } from '../store/ImageFile';
 
+import { CustomComments } from '../hooks/CustomComments';
+
 
 export default function UpdatePosts(){
     const navigate = useNavigate();
@@ -34,8 +36,6 @@ export default function UpdatePosts(){
                 SetShow(true);
             }
 
-            console.log(imageMapList);
-            console.log(data.uid);
         }
         catch(error){
             console.log(error);
@@ -194,15 +194,16 @@ export default function UpdatePosts(){
                                     SetContent(e.target.value);
                         }} readOnly={!show}
                         />
+                    </div>
+                    <button className="btn btn-secondary" onClick={() => {navigate(-1);}}>취소</button>
+                    {show && <button type="button" className="btn btn-primary" onClick={savePosts} >수정</button> }
+                    {show && <button type="button" className="btn btn-danger" onClick={deletePosts} >삭제</button >}
+                    {!show && !likeState && <button type="button" className="btn btn-primary" onClick={saveLikeIt} >좋아요</button> }
+                    {!show && likeState && <button type="button" className="btn btn-danger" onClick={saveLikeIt} >좋아요 취소</button> }
+                    <CustomComments />
+                </div>
             </div>
-            <button className="btn btn-secondary" onClick={() => {navigate(-1);}}>취소</button>
-            {show && <button type="button" className="btn btn-primary" onClick={savePosts} >수정</button> }
-            {show && <button type="button" className="btn btn-danger" onClick={deletePosts} >삭제</button >}
-            {!show && !likeState && <button type="button" className="btn btn-primary" onClick={saveLikeIt} >좋아요</button> }
-            {!show && likeState && <button type="button" className="btn btn-danger" onClick={saveLikeIt} >좋아요 취소</button> }
         </div>
-      </div>
-      </div>
     );
 
 };

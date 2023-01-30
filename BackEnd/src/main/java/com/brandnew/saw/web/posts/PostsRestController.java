@@ -19,7 +19,9 @@ public class PostsRestController {
     private final PostsService postsService;
 
     @GetMapping("main")
-    public ResponseEntity<Map<String, Object>> main(@RequestParam(value = "uid", required = false) Long uid, @RequestParam(value = "search", required = false) String search, @PageableDefault(size=5) Pageable pageable) {
+    public ResponseEntity<Map<String, Object>> main(@RequestParam(value = "uid", required = false) Long uid,
+                                                    @RequestParam(value = "search", required = false) String search,
+                                                    @PageableDefault(size=5) Pageable pageable) {
         System.out.println("Search : " + search);
         System.out.println("uid : " + search);
         return new ResponseEntity<>(postsService.findAllDesc(uid, search, pageable), HttpStatus.OK);
@@ -39,6 +41,8 @@ public class PostsRestController {
 
     @PutMapping("update")
     public ResponseEntity<Map<String, Object>> updatePosts(@RequestParam Long postsId, @RequestBody PostsUpdateRequestDto requestDto) {
+        System.out.println("uid: "+requestDto.getUid());
+        System.out.println("ImageID: "+requestDto.getImageId());
         postsService.update(postsId, requestDto);
 
         return new ResponseEntity<>(null, HttpStatus.OK);

@@ -21,5 +21,8 @@ export const API = {
     EATSAVE:    `/eat/save`,
     REDIRECT:   `/reissue`,
     FILEUPDATE:   `/file/fileUpdate`,
-    FILESAVE:   `/file/upload`
+    FILESAVE:   `/file/upload`,
+    COMMENTSSAVE: `/comment/save`,
+    COMMENTSMAIN: `/comment/posts`,
+    COMMENTSDELETE: `/comment/delete`
 };
