@@ -29,7 +29,6 @@ export default function InsertPosts(){
                 
             }
             catch(error){
-                // navigate('/signin');
                 console.log(error);
             }
         }

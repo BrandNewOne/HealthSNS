@@ -5,35 +5,23 @@ import { useSelector } from 'react-redux';
 
 import { API } from '../api/Config';
 import { CustomAxios } from '../api/CustomAxios';
-import { PostRtkAxios } from  '../api/PostRtkAxios';
 
 export default function Manage(){
 
     const navigate = useNavigate();
     const {id} = useSelector(state => {return state.authUser}); 
 
-    const [data, setData] = useState([{
-        id: '',
-        foodName: '',
-        calories: '',
-        tan: '',
-        dan: '',
-        ge: '',
-        date: '',
-        time: ''
-    }])
+    const [data, setData] = useState([{}])
 
     const baseAxios = async () =>{
-        if(id === null){
-            try{
-                await PostRtkAxios(); 
-            }
-            catch(error){
-                console.log(error);
-                //navigate('/signin');
-            }
+        try{
+            const response = await CustomAxios.get(`${API.MYFOOD}`,{params:{id:id}});
+            setData(response.data.message);
+            console.log(data);
         }
-
+        catch(error){
+            console.log(error);
+        }
     } 
     
     useEffect(() => {
@@ -88,10 +76,20 @@ export default function Manage(){
                         <div className="form-group">
                             <label htmlFor="foodName">음식이름</label>
                                 <input type="text" className="form-control"
+                                        list="datalistOptions"
                                         placeholder="음식이름을 입력하세요" 
                                         onChange={(e)=>{
                                             SetFoodName(e.target.value);
-                                }}/>
+                                }} />
+                                <datalist id="datalistOptions">
+                                    {
+                                        data.map((item) => {
+                                            return(
+                                                <option value={item.foodName} />
+                                            );
+                                        })
+                                    }
+                                </datalist>
                         </div>
                         <div className="form-group">
                             <label htmlFor="foodName">먹은 음식 그램</label>

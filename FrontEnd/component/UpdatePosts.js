@@ -39,7 +39,6 @@ export default function UpdatePosts(){
         }
         catch(error){
             console.log(error);
-            // return navigate('/signin');
         }
     } 
 

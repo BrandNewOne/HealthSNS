@@ -25,7 +25,6 @@ export default function UserInfo(){
 
         }
         catch(error){
-            // navigate('/signin');
             console.log(error);
         }
     } 

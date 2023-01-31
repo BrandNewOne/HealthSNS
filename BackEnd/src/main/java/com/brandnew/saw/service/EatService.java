@@ -7,6 +7,7 @@ import com.brandnew.saw.domain.food.FoodRepository;
 import com.brandnew.saw.exception.BadRequestException;
 import com.brandnew.saw.web.dto.manage.EatListResponseDto;
 import com.brandnew.saw.web.dto.manage.EatRequestDto;
+import com.brandnew.saw.web.dto.manage.FoodListResponseDto;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,12 +32,21 @@ public class EatService {
         result.put("message", entity);
         return result;
     }
-    @Transactional
-    public Map<String, Object> findAllDesc(EatRequestDto eatDto) {
+
+    public Map<String, Object> findEatDatasDesc(EatRequestDto eatDto) {
 
         System.out.println("id : " + eatDto.getId());
 
-        List<EatListResponseDto> entity = eatRepository.findByIdAllDesc(eatDto.getId(), eatDto.getStart_date(), eatDto.getEnd_date());
+        List<EatListResponseDto> entity = eatRepository.findEatDatasDesc(eatDto.getId(), eatDto.getStart_date(), eatDto.getEnd_date());
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("message", entity);
+        return result;
+    }
+
+    public Map<String, Object> findMyFood(EatRequestDto eatDto) {
+
+        List<FoodListResponseDto> entity = foodRepository.myFoodList(eatDto.getId());
 
         Map<String, Object> result = new HashMap<>();
         result.put("message", entity);
@@ -45,7 +55,7 @@ public class EatService {
 
     @Transactional
     public void save(EatRequestDto eatDto){
-        if(!foodRepository.existsByFoodName(eatDto.getFoodName())){
+        if(!foodRepository.existsByFoodNameAndUser(eatDto.getId(), eatDto.getFoodName())){
             try {
                 foodRepository.save(Food.createFood(eatDto));
             }

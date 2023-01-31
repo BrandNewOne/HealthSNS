@@ -19,12 +19,14 @@ import java.util.List;
 public class EatRepositoryImpl {
     private final JPAQueryFactory queryFactory;
 
-    public List<EatListResponseDto> findByIdAllDesc(Long id, LocalDateTime start_date, LocalDateTime end_date){
+    public List<EatListResponseDto> findEatDatasDesc(Long id, LocalDateTime start_date, LocalDateTime end_date){
         return queryFactory
                 .select(Projections.constructor(EatListResponseDto.class,eat,food))
                 .from(eat)
                 .leftJoin(food).on(eat.foodName.eq(food.foodName))
-                .where(eat.uid.eq(id).and(Expressions.dateTimeTemplate(LocalDateTime.class,"DATE_FORMAT({0},'%Y-%m-%d')",eat.createDate)
+                .where(eat.uid.eq(id)
+                        .and(food.uid.eq(id))
+                        .and(Expressions.dateTimeTemplate(LocalDateTime.class,"DATE_FORMAT({0},'%Y-%m-%d')",eat.createDate)
                         .between(Expressions.dateTimeTemplate(LocalDateTime.class,"DATE_FORMAT({0},'%Y-%m-%d')",start_date)
                                 , Expressions.dateTimeTemplate(LocalDateTime.class,"DATE_FORMAT({0},'%Y-%m-%d')",end_date)
                         )
@@ -32,4 +34,5 @@ public class EatRepositoryImpl {
                 .orderBy(eat.createDate.desc())
                 .fetch();
     }
+
 }

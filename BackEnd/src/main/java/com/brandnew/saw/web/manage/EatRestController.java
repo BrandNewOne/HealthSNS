@@ -26,10 +26,13 @@ public class EatRestController {
 
     @GetMapping("main")
     public ResponseEntity<Map<String, Object>> main(EatRequestDto eatDto) {
-        System.out.println(" main  들어옴 " + eatDto.getStart_date() );
-        System.out.println(" main  들어옴 " + eatDto.getEnd_date());
+        return new ResponseEntity<>(eatService.findEatDatasDesc(eatDto), HttpStatus.OK);
+    }
 
-        return new ResponseEntity<>(eatService.findAllDesc(eatDto), HttpStatus.OK);
+
+    @GetMapping("myFood")
+    public ResponseEntity<Map<String, Object>> myFood(EatRequestDto eatDto) {
+        return new ResponseEntity<>(eatService.findMyFood(eatDto), HttpStatus.OK);
     }
 
     @PostMapping("/save")
@@ -60,8 +63,8 @@ public class EatRestController {
         return new ResponseEntity<>(eatService.findById(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<Map<String, Object>> deleteEat(@PathVariable Long id) {
+    @DeleteMapping("delete")
+    public ResponseEntity<Map<String, Object>> deleteEat(@RequestParam Long id) {
         System.out.println("delete id : "+id);
         eatService.delete(id);
 

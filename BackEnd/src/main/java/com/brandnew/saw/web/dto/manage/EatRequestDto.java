@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class EatRequestDto {
 
 
-    @Column(nullable = false)
+    @Column(nullable = false)//uid
     private Long id;
 
     @NotBlank(message = "음식이름은 필수 입력 값입니다.")
@@ -40,6 +40,7 @@ public class EatRequestDto {
     @Positive(message = "음식무게는 양수로 입력해주세요.")
     private Long food_gram;
     @Positive(message = "먹은무게는 양수로 입력해주세요.")
+    @Column(nullable = false)
     private Long eat_gram;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSz")

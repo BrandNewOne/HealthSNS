@@ -26,7 +26,6 @@ export function CustomComments(){
         }
         catch(error){
             console.log(error);
-            // return navigate('/signin');
         }
     } 
 

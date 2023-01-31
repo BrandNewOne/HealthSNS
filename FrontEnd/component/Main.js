@@ -60,7 +60,6 @@ export default function Main(){
         }
         catch(error){
             console.log('메인실패',error);
-                // navigate('/signin');
         } 
     }
 

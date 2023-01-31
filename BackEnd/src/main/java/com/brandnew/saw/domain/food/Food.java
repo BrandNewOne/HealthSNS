@@ -15,21 +15,20 @@ public class Food {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-
-    @Column(unique = true ,nullable = false, name = "Food_foodName")
     private String foodName;
+    private long uid;
     private long calories;
     private long tan;
     private long dan;
     private long ge;
-
     private long etc;
     private long food_gram;
     
 
     @Builder
-    public Food(String foodName, long calories, long tan, long dan, long ge, long food_gram, long etc){
+    public Food(String foodName,long uid ,long calories, long tan, long dan, long ge, long food_gram, long etc){
         this.foodName = foodName;
+        this.uid = uid;
         this.calories = calories;
         this.tan = tan;
         this.dan = dan;
@@ -41,6 +40,7 @@ public class Food {
     public static Food createFood(EatRequestDto eatDto) {
         Food food = Food.builder()
                 .foodName(eatDto.getFoodName())
+                .uid(eatDto.getId())
                 .calories(eatDto.getCalories())
                 .tan(eatDto.getTan())
                 .dan(eatDto.getDan())

@@ -12,7 +12,7 @@ import { CustomAxios } from '../api/CustomAxios';
 
 import { CustomPieChart } from '../hooks/UsePieChart';
 import { CustomBarChart } from '../hooks/UseBarChart';
-import { Today } from '@material-ui/icons';
+import { CustomEatTable } from '../hooks/CustomEatTable';
 
 
 export default function Chart(){
@@ -32,7 +32,6 @@ export default function Chart(){
         }
         catch(error){
             console.log(`error`,error);
-            //navigate('/signin');
         }
     } 
     
@@ -62,6 +61,9 @@ export default function Chart(){
                 <div className='col-md-5' style={{display: 'flex'}}>
                     <CustomPieChart datasets = {datasets} />
                     <CustomBarChart datasets = {datasets} />
+                </div>
+                <div>
+                    <CustomEatTable datasets = {datasets} />
                 </div>
             </div>
         </div>
