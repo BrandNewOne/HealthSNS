@@ -44,15 +44,6 @@ public class EatService {
         return result;
     }
 
-    public Map<String, Object> findMyFood(EatRequestDto eatDto) {
-
-        List<FoodListResponseDto> entity = foodRepository.myFoodList(eatDto.getId());
-
-        Map<String, Object> result = new HashMap<>();
-        result.put("message", entity);
-        return result;
-    }
-
     @Transactional
     public void save(EatRequestDto eatDto){
         if(!foodRepository.existsByFoodNameAndUser(eatDto.getId(), eatDto.getFoodName())){
@@ -74,7 +65,5 @@ public class EatService {
 
         eatRepository.delete(entity);
     }
-
-
 
 }

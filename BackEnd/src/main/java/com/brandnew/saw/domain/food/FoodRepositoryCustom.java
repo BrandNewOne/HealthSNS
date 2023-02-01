@@ -7,4 +7,6 @@ import java.util.List;
 public interface FoodRepositoryCustom {
     boolean existsByFoodNameAndUser(long uid, String foodName);
     List<FoodListResponseDto> myFoodList(long uid);
+
+    long deleteMyFood(String foodName, long uid);
 }

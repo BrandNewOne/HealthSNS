@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import static com.brandnew.saw.domain.food.QFood.food;
+import static com.brandnew.saw.domain.eat.QEat.eat;
 
 @RequiredArgsConstructor
 @Repository
@@ -37,6 +38,19 @@ public class FoodRepositoryImpl {
                 .from(food)
                 .where(food.uid.eq(uid))
                 .fetch();
+    }
+
+    public long deleteMyFood(String foodName, long uid){
+        long deleteEat = queryFactory
+                .delete(eat)
+                .where(eat.foodName.eq(foodName).and(eat.uid.eq(uid)))
+                .execute();
+        queryFactory
+                .delete(food)
+                .where(food.foodName.eq(foodName).and(food.uid.eq(uid)))
+                .execute();
+
+        return deleteEat;
     }
 
 }

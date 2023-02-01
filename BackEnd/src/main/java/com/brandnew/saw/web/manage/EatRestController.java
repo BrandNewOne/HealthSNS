@@ -29,12 +29,6 @@ public class EatRestController {
         return new ResponseEntity<>(eatService.findEatDatasDesc(eatDto), HttpStatus.OK);
     }
 
-
-    @GetMapping("myFood")
-    public ResponseEntity<Map<String, Object>> myFood(EatRequestDto eatDto) {
-        return new ResponseEntity<>(eatService.findMyFood(eatDto), HttpStatus.OK);
-    }
-
     @PostMapping("/save")
     public ResponseEntity<Map<String, Object>> saveEat(@Valid @RequestBody EatRequestDto eatDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

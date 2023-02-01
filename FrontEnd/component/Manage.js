@@ -67,22 +67,27 @@ export default function Manage(){
 
     const deleteFood = async () => {
         try{
-            const response = await CustomAxios.post(`${API.EATSAVE}`,eatSavePostData(id))
-            
-            setData(response.data.message);
-            alert('저장되었습니다.');
-            navigate('/chart');
+            await CustomAxios.delete(`${API.FOODDELETE}`,{params:{foodName:foodName, uid:id}})
+            alert('삭제되었습니다.');
         }
         catch(error){
-            SetErrorMessage(error.response.data.message);
             console.log('manage Error ', error);
         }
             
     };
 
     const handleKeyDown = e => {
-        if(e.onKeyDown === 'Enter'){
-            console.log('asdf');
+        if(e.code === 'Enter'){
+            data.forEach((item) => {
+                if(item.foodName == foodName){
+                    SetTan(item.tan);
+                    SetDan(item.dan);
+                    SetGe(item.ge);
+                    SetCalories(item.calories);
+                    SetFoodName(item.foodName);
+                    SetFoodGram(item.foodGram);
+                }
+            })
         }
     } 
 
