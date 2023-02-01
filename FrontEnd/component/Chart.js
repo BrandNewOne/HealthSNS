@@ -44,6 +44,10 @@ export default function Chart(){
     }, [startDate, endDate]);
 
 
+    const handleOnDelete = () => {
+        baseAxios();
+    }
+
     return(
         <div>
            <h1>차트</h1>
@@ -63,7 +67,7 @@ export default function Chart(){
                     <CustomBarChart datasets = {datasets} />
                 </div>
                 <div>
-                    <CustomEatTable datasets = {datasets} />
+                    <CustomEatTable onDelete = {handleOnDelete} datasets = {datasets} />
                 </div>
             </div>
         </div>

@@ -26,7 +26,13 @@ public class FoodRepositoryImpl {
     public List<FoodListResponseDto> myFoodList(long uid){
         return queryFactory
                 .select(Projections.constructor(FoodListResponseDto.class,
-                        food.foodName)
+                        food.foodName,
+                        food.calories,
+                        food.tan,
+                        food.dan,
+                        food.ge,
+                        food.etc,
+                        food.food_gram)
                 )
                 .from(food)
                 .where(food.uid.eq(uid))
