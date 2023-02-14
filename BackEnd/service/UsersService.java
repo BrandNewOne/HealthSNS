@@ -45,16 +45,16 @@ public class UsersService implements UserDetailsService {
         }
         //여기
 
-//        String emailInRedis = redisDao.getValues(userSignUpRequestDto.getEmail());
-//        if (Objects.isNull(emailInRedis)) {
-//            throw new BadRequestException("인증가능 시간이 초과되었습니다.");
-//        }
-//        else if(emailInRedis.equals("authEmail")){
-//            redisDao.deleteValues(userSignUpRequestDto.getEmail());
-//        }
-//        else{
-//            throw new BadRequestException("인증 번호가 다릅니다.");
-//        }
+        String emailInRedis = redisDao.getValues(userSignUpRequestDto.getEmail());
+        if (Objects.isNull(emailInRedis)) {
+            throw new BadRequestException("인증가능 시간이 초과되었습니다.");
+        }
+        else if(emailInRedis.equals("authEmail")){
+            redisDao.deleteValues(userSignUpRequestDto.getEmail());
+        }
+        else{
+            throw new BadRequestException("인증 번호가 다릅니다.");
+        }
 
         userRepository.save(User.createUser(userSignUpRequestDto, passwordEncoder));
     }
