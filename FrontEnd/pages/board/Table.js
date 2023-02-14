@@ -38,22 +38,24 @@ const Table = ({setPage, totalPage, page, data, onUpdate}) => {
 
     return(
         <div>
-        <table className='table table-horizontal table-boardered table-hover' >
+        <table className='table table-horizontal table-boardered table-hover' style={{textAlign:"center"}}>
             <thead className='thead-strong'>
                 <tr>
                     <th className={`${styles.tdWidth15}`} > 번호 </th>
-                    <th className={`${styles.tdWidth70}`} > 제목 </th>
+                    <th className={`${styles.tdWidth55}`} > 제목 </th>
                     <th className={`${styles.tdWidth15}`} > 작성자 </th>
+                    <th className={`${styles.tdWidth15}`} > 좋아요 </th>
                 </tr>
             </thead>
             <tbody id = 'tbody'>
                 {
                     data.map((item,index) => {
                         return (
-                            <tr key = {index} onClick={() => updatePosts(item.id)}>
-                                <td >{item.id}</td>
-                                <td>{item.title}</td>
+                            <tr key = {index} onClick={() => updatePosts(item.postsId)}>
+                                <td >{item.postsId}</td>
+                                <td >{item.title}</td>
                                 <td>{item.nickName}</td>
+                                <td>{item.countLikeIt}</td>
                             </tr>
                         );
                     })

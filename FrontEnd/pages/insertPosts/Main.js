@@ -24,6 +24,8 @@ export default function InsertPosts(){
     const [thisName, SetThisName] = useState(name);
     const [titleErrorMessage, SetTitleErrorMessage] = useState("");
     const [contentErrorMessage, SetContentErrorMessage] = useState("");
+
+    const [files, setFiles] = useState([]);
     
 
     const baseAxios = async () =>{
@@ -57,9 +59,25 @@ export default function InsertPosts(){
         SetThisContent(e.target.value);
     }
 
-    const savePosts = async () => {
+    const savePosts = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        // @ts-ignore
+        Array.from(files).forEach((el) => {
+        formData.append("files", el);
+        });
+
+        formData.append("uid",id);
+        formData.append("title",thisTitle);
+        formData.append("content",thisContent);
+        formData.append("nickName",name);
+
         try{
-            await CustomAxios.post(`${API.POSTSSAVE}`,postsSavePostData(id,name));
+            await CustomAxios.post(`${API.POSTSSAVE}`,formData,{
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                }
+            });
             alert('글이 등록되었습니다.');
             navigate(-1);
         }
@@ -113,7 +131,7 @@ export default function InsertPosts(){
                     <tr>
                         <th scope="row">파일첨부</th>
                         <td colSpan={3}>
-                            <FileUpload />
+                            <FileUpload files = {files} setFiles = {setFiles}/>
                         </td>
                     </tr>
                     <tr>

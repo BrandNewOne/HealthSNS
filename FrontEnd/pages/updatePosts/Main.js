@@ -8,6 +8,7 @@ import  store  from '../../store/index';
 import FileUpdate from './FileUpdate';
 
 import { SET_ImageFileList } from '../../store/ImageFile';
+import { DELETE_ImageFileList } from '../../store/ImageFile';
 
 import { CustomComments } from './CustomComments';
 
@@ -53,31 +54,53 @@ export default function UpdatePosts(){
     const [likeState, setLikeState] = useState(false);
     const [imageMapList, setImageMapList] = useState([]);
 
-    useEffect(() => {
-    }, [likeState]);
+    const [titleErrorMessage, SetTitleErrorMessage] = useState("");
+    const [contentErrorMessage, SetContentErrorMessage] = useState("");
 
-    useEffect(() => {
-    }, [imageMapList]);
+    const [files, setFiles] = useState([]);
 
     useEffect(() => {
         baseAxios();
     }, []);
 
-    useEffect(() => {
-    }, [dump]);
+    const savePosts = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
 
-    const savePosts = async () => {
+        Array.from(files).forEach((el) => {
+            formData.append("files", el);
+        });
+        
+        formData.append("postsId",id);
+        formData.append("title",title);
+        formData.append("content",content);
+        formData.append("uid",uid);
+        if(!(store.getState().imageFile.fileList === null)){
+            console.log("updateFiles",store.getState().imageFile.fileList);
+            formData.append("updateFiles",store.getState().imageFile.fileList);
+        }
+
+
         try{
-            await CustomAxios.put(`${API.POSTSUPDATE}`,
-                                   {title:title, content:content, uid:id, imageId:dump},
-                                   {params:{postsId:id}});
+            await CustomAxios.put(`${API.POSTSUPDATE}`,formData,{
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                }
+            });
 
+            store.dispatch(DELETE_ImageFileList());
             alert('글이 수정되었습니다.');
             navigate('/main');
 
         }
         catch(error){
-            console.log(error);
+            const e = error.response.data;
+            if('content' in e){
+                SetContentErrorMessage(e.content);
+            }
+            if('title' in e){
+                SetTitleErrorMessage(e.title);
+            }
         }
 
     };
@@ -159,6 +182,7 @@ export default function UpdatePosts(){
                                     SetTitle(e.target.value);
                                 }} 
                                 readOnly={!show} />
+                                <p style={{color:"red"}}>{titleErrorMessage}</p>
                             </td>
                             <th scope="row" className={`${styles.tdWidth11}`}>작성자</th>
                             <td className={`${styles.tdWidth20}`}>
@@ -173,23 +197,7 @@ export default function UpdatePosts(){
                         <tr>
                             <th scope="row">파일첨부</th>
                             <td colSpan={3}>
-                                {show &&<FileUpdate data = {imageMapList || []} onDelete = {imageDelete}/> }
-                                {/* {imageMapList && <div className="form-group">
-                                        <ul>
-                                        {
-                                            imageMapList.map((item) => {
-                                                return (
-                                                    <React.Fragment key={item.saveName}>
-                                                        {show && 
-                                                        <li> {item.originName}
-                                                            <button id={item.saveName} type="button" onClick={handleDelete} >삭제 </button>
-                                                        </li>}
-                                                    </React.Fragment>
-                                                );
-                                            })
-                                        }
-                                        </ul> */}
-                                    {/* </div>} */}
+                                {show &&<FileUpdate data = {imageMapList || []} onDelete = {imageDelete} files = {files} setFiles={setFiles} /> }
                             </td>
                         </tr>}
                         {imageMapList && 
@@ -215,6 +223,7 @@ export default function UpdatePosts(){
                                     SetContent(e.target.value);
                                 }} readOnly={!show}
                             />
+                            <p style={{color:"red"}}>{contentErrorMessage}</p>
                             </td>
                         </tr>
                         {show && 

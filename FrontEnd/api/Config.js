@@ -23,8 +23,6 @@ export const API = {
     MYFOOD:    `/food/myFood`,
     FOODDELETE:    `/food/delete`,
     REDIRECT:   `/reissue`,
-    FILEUPDATE:   `/file/fileUpdate`,
-    FILESAVE:   `/file/upload`,
     COMMENTSSAVE: `/comment/save`,
     COMMENTSMAIN: `/comment/posts`,
     COMMENTSDELETE: `/comment/delete`
