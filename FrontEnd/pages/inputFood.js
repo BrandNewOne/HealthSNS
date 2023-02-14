@@ -6,11 +6,14 @@ import { useSelector } from 'react-redux';
 import { API } from '../api/Config';
 import { CustomAxios } from '../api/CustomAxios';
 
+import NavBar from '../component/NavBar';
+import styles from '../style/InputFood.module.css'
+
 export default function Manage(){
 
     const navigate = useNavigate();
     const {id} = useSelector(state => {return state.authUser}); 
-    const [data, setData] = useState([{}])
+    const [data, setData] = useState([])
 
     const baseAxios = async () =>{
         try{
@@ -97,102 +100,122 @@ export default function Manage(){
 
     return(
         <div>
-            <h1>관리</h1>
-            <div className="col-md-12">
-                <div className="row">
-                    <div className="col-md-6">
-                        <div className="form-group">
-                            <label htmlFor="foodName">음식이름</label>
+            <header className={`${styles.header}`}>
+                <NavBar uid = {id} />
+            </header>
+            <div className={`col-md-12 ${styles.Main}`}>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th scope="col" className={`${styles.tdWidth25}`} ><h3>오늘먹은음식</h3></th>
+                        <td className= {`${styles.tdWidth75}`}> {errorMessage}</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>음식이름</th>
+                        <td>
+                            <div className="form-group">
                                 <input type="text" className="form-control"
-                                        list="datalistOptions"
-                                        placeholder="음식이름을 입력하세요" 
-                                        onChange={(e)=>{
-                                            SetFoodName(e.target.value);
-                                        }} 
-                                        onKeyDown={handleKeyDown}
-                                />
-                                <datalist id="datalistOptions">
-                                    {
-                                        data.map((item,index) => {
-                                            return(
-                                                    <option key={index} onClick={clickTest}> {item.foodName} </option>
-                                            );
-                                        })
-                                    }
-                                </datalist>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="foodName">먹은 음식 그램</label>
-                                <input type="text" className="form-control"
+                                            list="datalistOptions"
+                                            placeholder="음식이름을 입력하세요" 
+                                            onChange={(e)=>{
+                                                SetFoodName(e.target.value);
+                                            }} 
+                                            onKeyDown={handleKeyDown}
+                                    />
+                                                                    <datalist id="datalistOptions">
+                                        {
+                                            data.map((item,index) => {
+                                                return(
+                                                        <option key={index} onClick={clickTest}> {item.foodName} </option>
+                                                );
+                                            })
+                                        }
+                                    </datalist>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">먹은음식 그램</th>
+                        <td> 
+                            <input type="text" className="form-control"
                                         placeholder="음식이름을 입력하세요" 
                                         onChange={(e)=>{
                                             SetEatGram(e.target.value);
                                 }}
                                 value={eat_gram}
-                                />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="calories">칼로리</label>
-                                <input type="text" className="form-control"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">칼로리</th>
+                        <td>
+                            <input type="text" className="form-control"
                                         placeholder="열량을 입력하세요" 
                                         onChange={(e)=>{
                                             SetCalories(e.target.value);
                                 }}
                                 value={calories}
                                 />
-                        </div>
-  
-                        <div className="form-group">
-                            <label htmlFor="tan">탄수화물</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">탄수화물</th>
+                        <td>
                             <input type="text" className="form-control"
                                     placeholder="탄수화물을 입력하세요" 
                                     onChange={(e)=>{
                                         SetTan(e.target.value);
-                            }}
-                            value={tan}
+                                }}
+                                value={tan}
                             />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="dan">단백질</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">단백질</th>
+                        <td>
                             <input type="text" className="form-control"
                                     placeholder="단백질을 입력하세요" 
                                     onChange={(e)=>{
                                         SetDan(e.target.value);
-                            }}
-                            value={dan}
+                                    }}
+                                value={dan}
                             />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="ge">지방</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">지방</th>
+                        <td>
                             <input type="text" className="form-control"
                                     placeholder="지방을 입력하세요" 
                                     onChange={(e)=>{
                                         SetGe(e.target.value);
-                            }}
-                            value={ge}
+                                }}
+                                value={ge}
                             />
-
-                        <div className="form-group">
-                            <label htmlFor="gram">그램</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">그램</th>
+                        <td>
                             <input type="text" className="form-control"
                                     placeholder="그램을 입력하세요" 
                                     onChange={(e)=>{
                                         SetFoodGram(e.target.value);
-                            }}
-                            value={food_gram}
+                                }}
+                                value={food_gram}
                             />
-                        </div>
-                        <p className='text-danger'>{errorMessage}</p>
-                        <Link to="/chart" role="button" className="btn btn-secondary">취소</Link>
-                        <button onClick={deleteFood} className="btn btn-danger" >삭제</button>
-                        <button onClick={SaveEat} className="btn btn-primary" >저장</button>
-                    </div>
-                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+              
+            <Link to="/chart" role="button" className="btn btn-secondary">취소</Link>
+            <button onClick={deleteFood} className="btn btn-danger" >삭제</button>
+            <button onClick={SaveEat} className="btn btn-primary" >저장</button>
             </div>
         </div>
-    </div>
     );
 
 };

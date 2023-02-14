@@ -24,8 +24,7 @@ export function CustomPieChart({datasets}) {
                 tempDataSet[i] += d.calories*d.eat_gram; 
             }
         });
-
-        console.log(tempLabelSet, tempDataSet);
+        
         setPieChartLabels(tempLabelSet);
         setPieChartData(tempDataSet);
     }

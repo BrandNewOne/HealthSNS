@@ -54,7 +54,6 @@ export function CustomBarChart({datasets}) {
             }
         });
 
-        console.log(tempLabelSet, tempDataSet)
         setBarChartLabels(tempLabelSet);
         setBarChartData(tempDataSet);
         setBarChartTanData(tempTanDataSet);

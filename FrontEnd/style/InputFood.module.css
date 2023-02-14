@@ -1,0 +1,37 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+}
+
+.Main{
+    margin-top: 50px;
+    padding: 3%;
+}
+
+.width60{
+    float: left;
+    list-style: none;
+    width: 70%;
+    margin-right: 10%;
+}
+
+.width20{
+    float: left;
+    list-style: none;
+    width: 20%;
+}
+
+.width100{
+    width: 100%;
+    margin-right: 100px;
+}
+
+.tdWidth20{
+    width: 25%;
+}
+.tdWidth75{
+    width: 75%;
+}

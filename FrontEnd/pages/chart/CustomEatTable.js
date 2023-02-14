@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { API } from '../api/Config';
-import { CustomAxios } from '../api/CustomAxios';
+import React from 'react';
+import { API } from '../../api/Config';
+import { CustomAxios } from '../../api/CustomAxios';
 
 
-export function CustomEatTable({datasets}) {
+export function CustomEatTable({onDelete, datasets}) {
 
     const deleteEatData = async (id) => {
-        const response = await CustomAxios.delete(`${API.EATDELETE}`,{params:{id:id}})        
+        await CustomAxios.delete(`${API.EATDELETE}`,{params:{id:id}})    
+        onDelete();
     };
 
     return (
@@ -20,11 +21,11 @@ export function CustomEatTable({datasets}) {
             </thead>
             <tbody id = 'tbody'>
                 {
-                    datasets.map((item) => {
+                    datasets.map((item, index) => {
                         return (
-                            <tr key = {item.id}>
+                            <tr key = {index}>
                                 <td>{item.foodName}</td>
-                                <button type="button" onClick={() => deleteEatData(item.id)}>삭제</button>
+                                <td type="button" className='btn btn-danger' onClick={() => deleteEatData(item.id)}>삭제</td>
                             </tr>
                         );
                     })

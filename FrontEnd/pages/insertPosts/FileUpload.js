@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 
-import store from '../store/index';
-import { SET_DUMP } from '../store/User';
-import { CustomAxios } from '../api/CustomAxios';
+import store from '../../store/index';
+import { SET_DUMP } from '../../store/User';
+import { CustomAxios } from '../../api/CustomAxios';
 
-import { DELETE_ImageFileList } from '../store/ImageFile';
-import { API } from '../api/Config';
+import { API } from '../../api/Config';
+
+import styles from '../../style/File.module.css'
 
 const getUniqueObjectArray = (arr1, arr2, key) => {
   const resultArr = [];
@@ -28,7 +29,8 @@ const getUniqueObjectArray = (arr1, arr2, key) => {
   return resultArr;
 }
 
-export default function FileUpload(prop) {
+
+export default function FileUpload() {
 
   const inputRef = useRef([]);
   const [files, setFiles] = useState([]);
@@ -77,25 +79,16 @@ export default function FileUpload(prop) {
       formData.append("files", el);
     });
 
-    const params = new URLSearchParams(window.location.search);
-    let id = params.get('id');
-    
-    formData.append("postsId",id);
-    if(!(store.getState().imageFile.fileList === null)){
-      console.log("updateFiles",store.getState().imageFile.fileList);
-      formData.append("updateFiles",store.getState().imageFile.fileList);
-    }
+    formData.append("uid",store.getState().authUser.id);
 
     try {
-      const response = await CustomAxios.put(`${API.FILEUPDATE}`,formData, {
+      const response = await CustomAxios.post(`${API.FILESAVE}`,formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         }
       });
       console.log('생성된 파일 넘버', response.data.message);
       store.dispatch(SET_DUMP(response.data.message));
-      store.dispatch(DELETE_ImageFileList());
-
       SetErrorMessage('');
       alert("성공");
 
@@ -107,7 +100,7 @@ export default function FileUpload(prop) {
 
   return (
     <div>
-        <input ref={inputRef} type="file" multiple onChange={handleChange} accept='image/jpg,image/png,image/jpeg,image/gif'/>
+        <input ref={inputRef} type="file" multiple onChange={handleChange} accept='image/jpg,image/png,image/jpeg,image/gif' />
 
         <ul>
           {files.map((file, index) => (

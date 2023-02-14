@@ -1,0 +1,29 @@
+.header {
+    position: fixed;
+    top: 0;
+    /* width: 100% */
+    left: 0;
+    right: 0;
+  
+    /* 생략 */
+}
+
+.Main{
+    margin-top: 50px;
+    padding: 3%;
+}
+
+.width20{
+    width: 20%;
+    margin-right: 10px;
+    float: right;
+}
+
+.width15{
+    width: 15%;
+    margin-right: 10px;
+}
+
+.width100{
+    width: 100%;
+}

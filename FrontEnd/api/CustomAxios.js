@@ -21,30 +21,45 @@ CustomAxios.interceptors.request.use(
 
 		// 요청을 보내기 전에 수행할 일
 		if(expireTime < nowDate || accessToken == null){
-			try{
-				const response = await PostRtkAxios(); 
-				accessToken = response.data.atk;
-				if(config.params){
-					if (config.params.id === null){
-						config.params.id = store.getState().authUser.id;
-					}
-					else if (config.params.uid === null){
-						config.params.uid = store.getState().authUser.id;
-					}
+			const response = await PostRtkAxios(); 
+			accessToken = response.data.atk;
+			if(config.params){
+				if (config.params.id === null){
+					config.params.id = store.getState().authUser.id;
 				}
-				if(config.data){
-					if (config.data.id === null){
-						config.data.id = store.getState().authUser.id;
-					}
+				else if (config.params.uid === null){
+					config.params.uid = store.getState().authUser.id;
 				}
 			}
-			catch(error){
-				console.log('error',error);
-				store.dispatch(DELETE_ATK());
-				store.dispatch(DELETE_USER());
-				removeCookieToken();
-				window.location.href='/signin';
+			if(config.data){
+				if (config.data.id === null){
+					config.data.id = store.getState().authUser.id;
+				}
 			}
+			// try{
+			// 	const response = await PostRtkAxios(); 
+			// 	accessToken = response.data.atk;
+			// 	if(config.params){
+			// 		if (config.params.id === null){
+			// 			config.params.id = store.getState().authUser.id;
+			// 		}
+			// 		else if (config.params.uid === null){
+			// 			config.params.uid = store.getState().authUser.id;
+			// 		}
+			// 	}
+			// 	if(config.data){
+			// 		if (config.data.id === null){
+			// 			config.data.id = store.getState().authUser.id;
+			// 		}
+			// 	}
+			// }
+			// catch(error){
+			// 	console.log('error',error);
+			// 	store.dispatch(DELETE_ATK());
+			// 	store.dispatch(DELETE_USER());
+			// 	removeCookieToken();
+			// 	window.location.href='/signin';
+			// }
 		}
 		config.headers.Authorization = `Bearer ${accessToken}`;
 		config.baseURL = `${API.BASE_URL}`;
@@ -65,8 +80,8 @@ CustomAxios.interceptors.response.use(
 	    return response;
 	},
 	function (error) {
-		console.log("CustomAxios Response Error : ", error);
 	    // 오류 응답을 처리
+
 	    return Promise.reject(error);
 	}
 );

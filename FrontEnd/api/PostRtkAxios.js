@@ -6,6 +6,7 @@ import  store  from '../store/index';
 import { SET_ATK_EXP } from '../store/Atk';
 import { SET_USER } from '../store/User';
 import jwt_decode from "jwt-decode";
+import { removeCookieToken } from '../storage/Cookie';
 
 
 export const PostRtkAxios = axios.create({
@@ -41,6 +42,8 @@ PostRtkAxios.interceptors.response.use(
 	},
 	function (error) {
 	    // 오류 응답을 처리
+		removeCookieToken();
+		window.location.href='/signin';
 	    return Promise.reject(error);
 	}
 );

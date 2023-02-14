@@ -1,16 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import SignUp from './component/SignUp';
-import SignIn from './component/SignIn';
-import UserInfo from './component/UserInfo';
-import Main from './component/Main';
-import LikeItMain from './component/LikeItMain';
-import InsertPosts from './component/InsertPosts';
-import UpdatePosts from './component/UpdatePosts';
-import Manage from './component/Manage';
-import Chart from './component/Chart';
+import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
+import UserInfo from './pages/UserInfo';
+import Main from './pages/board/Main';
+import InsertPosts from './pages/insertPosts/Main';
+import UpdatePosts from './pages/updatePosts/Main';
+import Manage from './pages/inputFood';
+import Chart from './pages/chart/Chart';
 
-// import Test from './component/Test';
+// import Test from './trash/Test';
 
 function App() {
   return (
@@ -24,8 +23,6 @@ function App() {
         <Route path="/uposts" element={<UpdatePosts />} />
         <Route path="/manage" element={<Manage />} />
         <Route path="/chart" element={<Chart />} />
-        <Route path="/likeItMain" element={<LikeItMain />} />
-
         {/* <Route path="/testing" element={<Test />} /> */}
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,26 @@
+.navAndButton{
+    width: 80%;
+}
+
+.width80{
+    float: left;
+    list-style: none;
+    width: 80%;
+}
+
+.width20{
+    float: left;
+    list-style: none;
+    width: 20%;
+}
+
+.width100{
+    width: 100%;
+}
+
+.tdWidth15 {
+    width:15%;
+}
+.tdWidth70 {
+    width:70%;
+}
