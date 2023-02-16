@@ -16,7 +16,7 @@
     - 메일인증 필요
  - 회원정보수정
 
-![image.jpg1](/Image/로그인.png)|![image.jpg1](/Image/회원가입.png)|![image.jpg1](/Image/회원정보 수정.png)
+![image.jpg1](/Image/%EB%A1%9C%EA%B7%B8%EC%9D%B8.png)|![image.jpg1](/Image/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85.png)|![image.jpg1](/Image/%ED%9A%8C%EC%9B%90%EC%A0%95%EB%B3%B4%20%EC%88%98%EC%A0%95.png)
 --- | --- | --- |
 
 
@@ -31,7 +31,7 @@
 - 게시글 수정
 
 
-![image.jpg1](/Image/게시글 등록.png)|![image.jpg1](/Image/게시글 수정.png)|![image.jpg1](/Image/게시글.png)|![image.jpg1](/Image/게시글.png)|![image.jpg1](/Image/메인화면.png)
+![image.jpg1](/Image/%EA%B2%8C%EC%8B%9C%EA%B8%80%20%EB%93%B1%EB%A1%9D.png)|![image.jpg1](/Image/%EA%B2%8C%EC%8B%9C%EA%B8%80%20%EC%88%98%EC%A0%95.png)|![image.jpg1](/Image/%EA%B2%8C%EC%8B%9C%EA%B8%80.png)|![image.jpg1](/Image/%EB%8C%93%EA%B8%80.png)|![image.jpg1](/Image/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4.png)
 --- | --- | --- | --- | --- |
 
 #### 2-3. 관리
@@ -51,7 +51,7 @@
     - 먹은 음식 Table
     - 먹은 음식 삭제가능
 
-![image.jpg1](/Image/나의 음식.png)|![image.jpg1](/Image/오늘먹은 음식.png)|![image.jpg1](/Image/차트.png)
+![image.jpg1](/Image/%EB%82%98%EC%9D%98%20%EC%9D%8C%EC%8B%9D.png)|![image.jpg1](/Image/%EC%98%A4%EB%8A%98%EB%A8%B9%EC%9D%80%20%EC%9D%8C%EC%8B%9D.png)|![image.jpg1](/Image/%EC%B0%A8%ED%8A%B8.png)
 --- | --- | --- |
 
 ----
@@ -76,3 +76,4 @@
 1. 음식등록의 검색 데이터 자동 파싱
 2. UI 일관성 있게 개선
 3. Toast메세지와 오류 메세지 두개를 띄우고있는데 어떨때 어떤 메세지를 띄울지 생각
+4. 에러페이지 추가
