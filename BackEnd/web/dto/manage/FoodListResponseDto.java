@@ -8,15 +8,15 @@ import lombok.NoArgsConstructor;
 public class FoodListResponseDto {
 
     private String foodName;
-    private long calories;
-    private long tan;
-    private long dan;
-    private long ge;
-    private long etc;
-    private long foodGram;
+    private float calories;
+    private float tan;
+    private float dan;
+    private float ge;
+    private float etc;
+    private float foodGram;
 
 
-    public FoodListResponseDto(String foodName, long calories, long tan, long dan, long ge, long etc, long foodGram){
+    public FoodListResponseDto(String foodName, float calories, float tan, float dan, float ge, float etc, float foodGram){
         this.foodName = foodName;
         this.calories = calories;
         this.tan = tan;

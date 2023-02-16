@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -15,7 +15,10 @@ import { CustomComments } from './CustomComments';
 import NavBar from '../../component/NavBar';
 import styles from '../../style/UpdatePosts.module.css'
 
+import { ToastContext } from "../../context/ToastContext";
+
 export default function UpdatePosts(){
+    const toast = useContext(ToastContext);
     const navigate = useNavigate();
 
     const params = new URLSearchParams(window.location.search);
@@ -89,7 +92,9 @@ export default function UpdatePosts(){
             });
 
             store.dispatch(DELETE_ImageFileList());
-            alert('글이 수정되었습니다.');
+
+            toast.setIsShow(true);
+            toast.setMessage('글이 수정되었습니다.');
             navigate('/main');
 
         }
@@ -111,8 +116,9 @@ export default function UpdatePosts(){
             await CustomAxios.delete(`${API.POSTSDELETE}`,
                                       {data : {uid:uid},
                                        params : {id:id}});
-
-            alert('글이 삭제되었습니다.');
+                                       
+            toast.setIsShow(true);
+            toast.setMessage('글이 삭제되었습니다.');
             navigate('/main');
         }
         catch(error){

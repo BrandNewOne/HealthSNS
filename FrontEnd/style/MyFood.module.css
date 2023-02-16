@@ -1,0 +1,17 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+}
+
+.Main{
+    margin-top: 50px;
+    padding: 3%;
+}
+
+.liStyle{
+    float: right;
+    margin-right: 10px;
+}

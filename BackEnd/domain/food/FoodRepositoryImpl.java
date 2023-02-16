@@ -19,7 +19,7 @@ public class FoodRepositoryImpl {
     public boolean existsByFoodNameAndUser(long uid, String foodName){
         return queryFactory
                 .selectFrom(food)
-                .where(food.foodName.eq(foodName).and(food.uid.eq(uid)))
+                .where(food.foodId.foodName.eq(foodName).and(food.foodId.uid.eq(uid)))
                 .fetchFirst() != null;
 
     }
@@ -27,7 +27,7 @@ public class FoodRepositoryImpl {
     public List<FoodListResponseDto> myFoodList(long uid){
         return queryFactory
                 .select(Projections.constructor(FoodListResponseDto.class,
-                        food.foodName,
+                        food.foodId.foodName,
                         food.calories,
                         food.tan,
                         food.dan,
@@ -36,7 +36,7 @@ public class FoodRepositoryImpl {
                         food.food_gram)
                 )
                 .from(food)
-                .where(food.uid.eq(uid))
+                .where(food.foodId.uid.eq(uid))
                 .fetch();
     }
 
@@ -47,7 +47,7 @@ public class FoodRepositoryImpl {
                 .execute();
         queryFactory
                 .delete(food)
-                .where(food.foodName.eq(foodName).and(food.uid.eq(uid)))
+                .where(food.foodId.foodName.eq(foodName).and(food.foodId.uid.eq(uid)))
                 .execute();
 
         return deleteEat;

@@ -15,19 +15,14 @@ public class Posts extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column
     private Long uid;
-
     @Column
     private long countLikeIt;
-
     @Column(length = 500, nullable = false)
     private String title;
-
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
-
 
     @Builder
     public Posts(String title, String content, Long uid, long countLikeIt){

@@ -31,6 +31,7 @@ public class EatRestController {
 
     @PostMapping("/save")
     public ResponseEntity<Map<String, Object>> saveEat(@Valid @RequestBody EatRequestDto eatDto, BindingResult bindingResult) {
+        System.out.println("asdfdsadsf : " + eatDto.getEat_date());
         if (bindingResult.hasErrors()) {
             List<String> list = bindingResult.getFieldErrors().stream()
                     .map(FieldError::getDefaultMessage).collect(Collectors.toList());

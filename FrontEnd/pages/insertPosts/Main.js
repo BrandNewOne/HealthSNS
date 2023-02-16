@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -10,10 +10,14 @@ import { PostRtkAxios } from  '../../api/PostRtkAxios';
 import FileUpload from './FileUpload';
 
 import NavBar from '../../component/NavBar';
-import styles from '../../style/InsertPosts.module.css'
+import styles from '../../style/InsertPosts.module.css';
+
+import { ToastContext } from "../../context/ToastContext";
+
 
 export default function InsertPosts(){
 
+    const toast = useContext(ToastContext);
     const navigate = useNavigate();
     const { id } = useSelector(state => {return state.authUser}); 
     const { name } = useSelector(state => {return state.authUser}); 
@@ -78,7 +82,10 @@ export default function InsertPosts(){
                     "Content-Type": "multipart/form-data",
                 }
             });
-            alert('글이 등록되었습니다.');
+            
+            toast.setIsShow(true);
+            toast.setMessage('글이 등록되었습니다.');
+
             navigate(-1);
         }
         catch(error)

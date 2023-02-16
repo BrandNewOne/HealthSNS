@@ -15,27 +15,42 @@ public class EatListResponseDto {
     private Long id;
     private LocalDateTime date;
     private String foodName;
-    private long calories;
-    private Long tan ;
-    private Long dan;
-    private Long ge;
-    private Long food_gram;
-    private Long eat_gram;
-    private Long etc;
+    private float calories;
+    private float tan ;
+    private float dan;
+    private float ge;
+    private float food_gram;
+    private float eat_gram;
+    private float etc;
 
-    @QueryProjection
-    public EatListResponseDto(Eat e, Food f){
-        this.id = e.getId();
-        this.date = e.getCreateDate();
-        this.foodName = e.getFoodName();
-        this.eat_gram = e.getEat_gram();
-        this.calories = f.getCalories();
-        this.tan = f.getTan();
-        this.dan = f.getDan();
-        this.ge = f.getGe();
-        this.food_gram = f.getFood_gram();
-        this.etc = f.getEtc();
+
+
+    public EatListResponseDto(long id, LocalDateTime date, String foodName, float eat_gram, float calories, float tan, float dan, float ge, float food_gram, float etc){
+        this.id = id;
+        this.date = date;
+        this.foodName = foodName;
+        this.eat_gram = eat_gram;
+        this.calories = calories;
+        this.tan = tan;
+        this.dan = dan;
+        this.ge = ge;
+        this.food_gram = food_gram;
+        this.etc = etc;
     }
+
+//    @QueryProjection
+//    public EatListResponseDto(Eat e, Food f){
+//        this.id = e.getId();
+//        this.date = e.getCreateDate();
+//        this.foodName = e.getFoodName();
+//        this.eat_gram = e.getEat_gram();
+//        this.calories = f.getCalories();
+//        this.tan = f.getTan();
+//        this.dan = f.getDan();
+//        this.ge = f.getGe();
+//        this.food_gram = f.getFood_gram();
+//        this.etc = f.getEtc();
+//    }
 
 //    @QueryProjection
 //    public EatListResponseDto(EatListResponseDto e){

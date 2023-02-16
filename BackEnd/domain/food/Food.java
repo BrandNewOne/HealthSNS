@@ -1,6 +1,8 @@
 package com.brandnew.saw.domain.food;
 
 import com.brandnew.saw.web.dto.manage.EatRequestDto;
+import com.brandnew.saw.web.dto.manage.FoodListResponseDto;
+import com.brandnew.saw.web.dto.manage.FoodRequestDto;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,24 +13,19 @@ import lombok.NoArgsConstructor;
 @Getter
 public class Food {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private Long id;
-    private String foodName;
-    private long uid;
-    private long calories;
-    private long tan;
-    private long dan;
-    private long ge;
-    private long etc;
-    private long food_gram;
+    @EmbeddedId
+    FoodId foodId;
+    private float calories;
+    private float tan;
+    private float dan;
+    private float ge;
+    private float etc;
+    private float food_gram;
     
 
     @Builder
-    public Food(String foodName,long uid ,long calories, long tan, long dan, long ge, long food_gram, long etc){
-        this.foodName = foodName;
-        this.uid = uid;
+    public Food(FoodId foodId, float calories, float tan, float dan, float ge, float food_gram, float etc){
+        this.foodId = foodId;
         this.calories = calories;
         this.tan = tan;
         this.dan = dan;
@@ -37,10 +34,33 @@ public class Food {
         this.etc = etc;
     }
 
-    public static Food createFood(EatRequestDto eatDto) {
+    public static Food createFood(FoodRequestDto foodDto) {
+        FoodId foodId = FoodId.builder()
+                .uid(foodDto.getUid())
+                .foodName(foodDto.getFoodName())
+                .build();
+
         Food food = Food.builder()
+                .foodId(foodId)
+                .calories(foodDto.getCalories())
+                .tan(foodDto.getTan())
+                .dan(foodDto.getDan())
+                .ge(foodDto.getGe())
+                .food_gram(foodDto.getFood_gram())
+                .etc(foodDto.getEtc())
+                .build();
+
+        return food;
+    }
+
+    public static Food createFood(EatRequestDto eatDto) {
+        FoodId foodId = FoodId.builder()
+                .uid(eatDto.getUid())
                 .foodName(eatDto.getFoodName())
-                .uid(eatDto.getId())
+                .build();
+
+        Food food = Food.builder()
+                .foodId(foodId)
                 .calories(eatDto.getCalories())
                 .tan(eatDto.getTan())
                 .dan(eatDto.getDan())
@@ -48,6 +68,7 @@ public class Food {
                 .food_gram(eatDto.getFood_gram())
                 .etc(eatDto.getEtc())
                 .build();
+
         return food;
     }
 

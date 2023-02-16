@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,10 +13,13 @@ import { CustomAxios } from '../api/CustomAxios';
 import NavBar from '../component/NavBar';
 import styles from '../style/UserInfo.module.css'
 
+import { ToastContext } from "../context/ToastContext";
+
 export default function UserInfo(){
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const toast = useContext(ToastContext);
 
     const { id } = useSelector(state => {return state.authUser}); 
 
@@ -58,7 +61,10 @@ export default function UserInfo(){
             dispatch(DELETE_ATK());
             dispatch(DELETE_USER());
             removeCookieToken();
-            alert('회원탈퇴 되었습니다.');
+
+            toast.setIsShow(true);
+            toast.setMessage('회원탈퇴 되었습니다.');
+
             navigate('/signIn');
 
         } catch (e) {
@@ -72,15 +78,17 @@ export default function UserInfo(){
                 await CustomAxios.put(`${API.USERUPDATE}`, 
                                         {name:name,password:password}, 
                                         {params:{id:id}});
-                alert('수정 되었습니다.');
-                
-                const blankStr = ''
-                SetPassword(blankStr)
-                SetCheckPassword(blankStr)
+
+
+                toast.setIsShow(true);
+                toast.setMessage('수정 되었습니다.');
+
+                SetPassword('');
+                SetCheckPassword('');
 
             }catch(error){
                 console.log(error);
-                SetErrorMessage(error.response.data.message)
+                SetErrorMessage(error.response.data.message);
             }
         }
     };

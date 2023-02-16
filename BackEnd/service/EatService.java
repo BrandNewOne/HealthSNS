@@ -34,9 +34,7 @@ public class EatService {
 
     public Map<String, Object> findEatDatasDesc(EatRequestDto eatDto) {
 
-        System.out.println("id : " + eatDto.getId());
-
-        List<EatListResponseDto> entity = eatRepository.findEatDatasDesc(eatDto.getId(), eatDto.getStart_date(), eatDto.getEnd_date());
+        List<EatListResponseDto> entity = eatRepository.findEatDatasDesc(eatDto.getUid(), eatDto.getStart_date().plusHours(9), eatDto.getEnd_date().plusHours(9));
 
         Map<String, Object> result = new HashMap<>();
         result.put("message", entity);
@@ -45,7 +43,7 @@ public class EatService {
 
     @Transactional
     public void save(EatRequestDto eatDto){
-        if(!foodRepository.existsByFoodNameAndUser(eatDto.getId(), eatDto.getFoodName())){
+        if(!foodRepository.existsByFoodNameAndUser(eatDto.getUid(), eatDto.getFoodName())){
             try {
                 foodRepository.save(Food.createFood(eatDto));
             }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface EatRepositoryCustom {
 
-    List<EatListResponseDto> findEatDatasDesc(Long id, LocalDateTime start_date, LocalDateTime end_date);
+    List<EatListResponseDto> findEatDatasDesc(Long uid, LocalDateTime start_date, LocalDateTime end_date);
 
 
 }

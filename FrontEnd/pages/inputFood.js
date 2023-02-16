@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { ko } from 'date-fns/esm/locale';
 
 import { API } from '../api/Config';
 import { CustomAxios } from '../api/CustomAxios';
@@ -9,15 +12,19 @@ import { CustomAxios } from '../api/CustomAxios';
 import NavBar from '../component/NavBar';
 import styles from '../style/InputFood.module.css'
 
+import { ToastContext } from "../context/ToastContext";
+
+
 export default function Manage(){
 
-    const navigate = useNavigate();
+    const toast = useContext(ToastContext);
+
     const {id} = useSelector(state => {return state.authUser}); 
     const [data, setData] = useState([])
 
     const baseAxios = async () =>{
         try{
-            const response = await CustomAxios.get(`${API.MYFOOD}`,{params:{id:id}});
+            const response = await CustomAxios.get(`${API.MYFOOD}`,{params:{uid:id}});
             setData(response.data.message);
             console.log(response);
         }
@@ -38,28 +45,34 @@ export default function Manage(){
     const [eat_gram, SetEatGram] = useState("");
     const [food_gram, SetFoodGram] = useState("");
     const [errorMessage, SetErrorMessage] = useState("");
+    const [eatDate, setEatDate] = useState(new Date());
 
     const eatSavePostData = (id) =>{
         
         return{
-            id: id,
+            uid: id,
             foodName: foodName,
-            calories: Math.ceil(calories/food_gram),
-            tan: Math.ceil(tan/food_gram),
-            dan: Math.ceil(dan/food_gram),
-            ge: Math.ceil(ge/food_gram),
+            calories: (calories/food_gram),
+            tan: (tan/food_gram),
+            dan: (dan/food_gram),
+            ge: (ge/food_gram),
             food_gram: 1,
             eat_gram: eat_gram,
-            etc: Math.ceil((calories - tan - dan - ge)/food_gram),
+            etc: ((calories - tan - dan - ge)/food_gram),
+            eat_date: eatDate
         }
     }
 
     const SaveEat = async () => {
         try{
+            console.log(eatDate);
             const response = await CustomAxios.post(`${API.EATSAVE}`,eatSavePostData(id))
-            setData(response.data.message);
-            alert('저장되었습니다.');
-            navigate('/chart');
+            // console.log(response);
+            // setData(response.data.message);
+            
+            toast.setIsShow(true);
+            toast.setMessage('저장되었습니다.');
+
         }
         catch(error){
             SetErrorMessage(error.response.data.message);
@@ -68,16 +81,17 @@ export default function Manage(){
             
     };
 
-    const deleteFood = async () => {
-        try{
-            await CustomAxios.delete(`${API.FOODDELETE}`,{params:{foodName:foodName, uid:id}})
-            alert('삭제되었습니다.');
-        }
-        catch(error){
-            console.log('manage Error ', error);
-        }
+    // const deleteFood = async () => {
+    //     try{
+    //         await CustomAxios.delete(`${API.FOODDELETE}`,{params:{foodName:foodName, uid:id}});
+    //         toast.setIsShow(true);
+    //         toast.setMessage('삭제되었습니다.');
+    //     }
+    //     catch(error){
+    //         console.log('manage Error ', error);
+    //     }
             
-    };
+    // };
 
     const handleKeyDown = e => {
         if(e.code === 'Enter'){
@@ -94,9 +108,6 @@ export default function Manage(){
         }
     } 
 
-    const clickTest = () => {
-        console.log('test성공');
-    } 
 
     return(
         <div>
@@ -108,7 +119,8 @@ export default function Manage(){
                 <thead>
                     <tr>
                         <th scope="col" className={`${styles.tdWidth25}`} ><h3>오늘먹은음식</h3></th>
-                        <td className= {`${styles.tdWidth75}`}> {errorMessage}</td>
+                        <td><DatePicker locale={ko} showTimeSelect dateFormat="Pp" selected={eatDate} onChange={(date) => setEatDate(date) } /></td>
+                        {/* <td className= {`${styles.tdWidth75}`}> {errorMessage}</td> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -124,11 +136,11 @@ export default function Manage(){
                                             }} 
                                             onKeyDown={handleKeyDown}
                                     />
-                                                                    <datalist id="datalistOptions">
+                                    <datalist id="datalistOptions">
                                         {
                                             data.map((item,index) => {
                                                 return(
-                                                        <option key={index} onClick={clickTest}> {item.foodName} </option>
+                                                        <option key={index}> {item.foodName} </option>
                                                 );
                                             })
                                         }
@@ -211,8 +223,8 @@ export default function Manage(){
                 </tbody>
             </table>
               
-            <Link to="/chart" role="button" className="btn btn-secondary">취소</Link>
-            <button onClick={deleteFood} className="btn btn-danger" >삭제</button>
+            {/* <Link to="/chart" role="button" className="btn btn-secondary">취소</Link> */}
+            {/* <button onClick={deleteFood} className="btn btn-danger" >삭제</button> */}
             <button onClick={SaveEat} className="btn btn-primary" >저장</button>
             </div>
         </div>

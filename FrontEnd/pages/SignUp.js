@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import styles from "../style/SignUp.module.css"
 
+import { ToastContext } from "../context/ToastContext";
+
 export default function SginUp(){
 
   const navigate = useNavigate();
+  const toast = useContext(ToastContext);
   
   const SaveSignup = async () => {
     if(checkPassword == password){
@@ -19,8 +22,10 @@ export default function SginUp(){
             password: password
           }
         );
+        
+        toast.setIsShow(true);
+        toast.setMessage('회원가입 되었습니다.');
 
-        alert('회원가입 되었습니다.');
         navigate('/signIn');
 
       } catch (error) {

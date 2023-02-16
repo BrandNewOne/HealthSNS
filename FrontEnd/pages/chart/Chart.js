@@ -22,12 +22,12 @@ export default function Chart(){
     const [datasets, setData] = useState([]);
     
 
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date(new Date().setHours(0, 0, 0, 0)));
     const [endDate, setEndDate] = useState(new Date());
 
     const baseAxios = async () => {
         try{
-            const response = await CustomAxios.get(`${API.EATMAIN}`,{params:{id:id, start_date:startDate, end_date:endDate}})        
+            const response = await CustomAxios.get(`${API.EATMAIN}`,{params:{uid:id, start_date:startDate, end_date:endDate}})        
             setData(response.data.message);
         }
         catch(error){
@@ -36,6 +36,7 @@ export default function Chart(){
     } 
 
     useEffect(() => {
+        console.log(startDate, endDate);
         baseAxios();
         console.log(datasets);
     }, [startDate, endDate]);
@@ -57,10 +58,10 @@ export default function Chart(){
                         <tr>
                             <th className={`${styles.tdWidth80}`} scope="col"><h3>차트</h3></th>
                             <td className={`${styles.tdWidth10}`} >
-                                <DatePicker locale={ko} dateFormat="yyyy-MM-dd" selected={startDate} onChange={(date) => setStartDate(date) } />
+                                <DatePicker locale={ko} showTimeSelect dateFormat="Pp" selected={startDate} onChange={(date) => setStartDate(date) } />
                             </td>
                             <td className={`${styles.tdWidth10}`} >
-                                <DatePicker locale={ko} dateFormat="yyyy-MM-dd" selected={endDate} onChange={(date) => setEndDate(date)} />
+                                <DatePicker locale={ko} showTimeSelect dateFormat="Pp" selected={endDate} onChange={(date) => setEndDate(date)} />
                             </td>
                         </tr>
                     </thead>
@@ -70,13 +71,13 @@ export default function Chart(){
                     데이터가 없습니다.
                 </div>}
                 { datasets.length !== 0 && 
-                    <div className='col-md-5' style={{display: 'flex'}}>
+                    <div className='col-md-6' style={{display: 'flex'}}>
                         <CustomPieChart datasets = {datasets} />
                         <CustomBarChart datasets = {datasets} />
                     </div>
                 }
                 { datasets.length !== 0 && 
-                    <div>
+                    <div style={{marginTop:"50px"}}>
                         <CustomEatTable onDelete = {handleOnDelete} datasets = {datasets} />
                     </div>
                 }

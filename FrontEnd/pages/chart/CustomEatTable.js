@@ -16,6 +16,8 @@ export function CustomEatTable({onDelete, datasets}) {
             <thead className='thead-strong'>
                 <tr>
                     <th> 음식이름 </th>
+                    <th> 먹은 시간 </th>
+                    <th> 먹은 그램 </th>
                     <th></th>
                 </tr>
             </thead>
@@ -25,7 +27,9 @@ export function CustomEatTable({onDelete, datasets}) {
                         return (
                             <tr key = {index}>
                                 <td>{item.foodName}</td>
-                                <td type="button" className='btn btn-danger' onClick={() => deleteEatData(item.id)}>삭제</td>
+                                <td>{item.date.replace('T', ' ').split('.')[0]}</td>
+                                <td>{item.eat_gram}</td>
+                                <td> <button type="button" className='btn btn-danger' onClick={() => deleteEatData(item.id)}>삭제</button></td>
                             </tr>
                         );
                     })

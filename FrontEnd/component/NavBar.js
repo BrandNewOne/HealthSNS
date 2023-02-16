@@ -45,6 +45,11 @@ const NavBar = ({uid}) =>{
                             <Link className="nav-link" to="/manage">오늘먹은음식</Link>
                         </li>
                     </ul>
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/myfood">나의 음식</Link>
+                        </li>
+                    </ul>
                     <div className="btn-group" >
                         <button className="btn  dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
                             Info

@@ -19,16 +19,26 @@ import java.util.List;
 public class EatRepositoryImpl {
     private final JPAQueryFactory queryFactory;
 
-    public List<EatListResponseDto> findEatDatasDesc(Long id, LocalDateTime start_date, LocalDateTime end_date){
+    public List<EatListResponseDto> findEatDatasDesc(Long uid, LocalDateTime start_date, LocalDateTime end_date){
         return queryFactory
-                .select(Projections.constructor(EatListResponseDto.class,eat,food))
+                .select(Projections.constructor(EatListResponseDto.class,
+                        eat.id,
+                        eat.createDate,
+                        eat.foodName,
+                        eat.eat_gram,
+                        food.calories,
+                        food.tan,
+                        food.dan,
+                        food.ge,
+                        food.food_gram,
+                        food.etc))
                 .from(eat)
-                .leftJoin(food).on(eat.foodName.eq(food.foodName))
-                .where(eat.uid.eq(id)
-                        .and(food.uid.eq(id))
-                        .and(Expressions.dateTimeTemplate(LocalDateTime.class,"DATE_FORMAT({0},'%Y-%m-%d')",eat.createDate)
-                        .between(Expressions.dateTimeTemplate(LocalDateTime.class,"DATE_FORMAT({0},'%Y-%m-%d')",start_date)
-                                , Expressions.dateTimeTemplate(LocalDateTime.class,"DATE_FORMAT({0},'%Y-%m-%d')",end_date)
+                .leftJoin(food).on(eat.foodName.eq(food.foodId.foodName))
+                .where(eat.uid.eq(uid)
+                        .and(food.foodId.uid.eq(uid))
+                        .and(Expressions.dateTimeTemplate(LocalDateTime.class,"DATE_FORMAT({0},'%Y.%m.%d %H:%i:%s')",eat.createDate)
+                        .between(Expressions.dateTimeTemplate(LocalDateTime.class,"DATE_FORMAT({0},'%Y.%m.%d %H:%i:%s')",start_date)
+                                , Expressions.dateTimeTemplate(LocalDateTime.class,"DATE_FORMAT({0},'%Y.%m.%d %H:%i:%s')",end_date)
                         )
                 ))
                 .orderBy(eat.createDate.desc())
