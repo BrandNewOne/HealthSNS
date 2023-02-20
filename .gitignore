@@ -4,3 +4,5 @@ Image/.DS_Store
 Image/.DS_Store
 FrontEnd/.DS_Store
 FrontEnd/trash
+FrontEnd/node_modules
+FrontEnd/package-lock.json
