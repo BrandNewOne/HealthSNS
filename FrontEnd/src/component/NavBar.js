@@ -20,7 +20,7 @@ const NavBar = ({uid}) =>{
             dispatch(DELETE_ATK());
             dispatch(DELETE_USER());
             removeCookieToken();
-            navigate('/');
+            navigate('/HealthSNS');
             // navigate('/signin');
         }
         catch(error){

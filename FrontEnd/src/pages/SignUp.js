@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import styles from "../style/SignUp.module.css"
 
+import { API } from '../api/Config';
+
 import { ToastContext } from "../context/ToastContext";
 
 export default function SginUp(){
@@ -15,7 +17,8 @@ export default function SginUp(){
     if(checkPassword == password){
       try {
         await axios.post(
-          '/users/save',
+          `${API.USERSAVE}`,
+          // '/users/save',
           {
             email: email,
             name: name,
@@ -27,7 +30,7 @@ export default function SginUp(){
         toast.setMessage('회원가입 되었습니다.');
 
         // navigate('/signIn');
-        navigate('/');
+        navigate('/HealthSNS');
 
       } catch (error) {
         console.log(error);
@@ -39,7 +42,8 @@ export default function SginUp(){
   const CheckEmail = async () => {
     try {
       await axios.post(
-        '/mail/sendMail',
+        `${API.SENDMAIL}`,
+        // '/mail/sendMail',
         null,
         {
             params:
@@ -64,6 +68,7 @@ export default function SginUp(){
   const AuthMail = async () => {
     try {
       await axios.post(
+        `${API.AUTHMAIL}`,
         '/mail/authMail',
         null,
         {
@@ -169,7 +174,7 @@ export default function SginUp(){
               </div>
               <p className='text-danger'>{errorMessage}</p>
               <div className={`${styles.Right}`}>
-                <Link to="/signIn" role="button" className={`btn btn-danger`}>취소</Link>
+                <Link to="/HealthSNS" role="button" className={`btn btn-danger`}>취소</Link>
                 <button className={`btn btn-primary ${styles.Button}`} onClick={SaveSignup}>가입하기</button>
               </div>
             </div>

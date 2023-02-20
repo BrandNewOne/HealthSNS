@@ -23,7 +23,7 @@ function App() {
     <ToastContext.Provider value ={{setMessage, setIsShow}}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<SignIn />} />
+          <Route path="/HealthSNS" element={<SignIn />} />
           {/* <Route path="/signIn" element={<SignIn />} /> */}
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/userInfo" element={<UserInfo />} />

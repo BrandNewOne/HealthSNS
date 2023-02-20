@@ -1,10 +1,11 @@
 const BASE_URL = "http://localhost:8080";
 
 export const API = {
+    BASE:       `${BASE_URL}`,
     LOGIN:      `${BASE_URL}/authenticate`,
-    SENDMAIL:   `${BASE_URL}/mail/authMail`,
-    USERSAVE:   `${BASE_URL}/mail/sendMail`,
-    AUTHMAIL:   `${BASE_URL}/users/save`,
+    SENDMAIL:   `${BASE_URL}/mail/sendMail`,
+    USERSAVE:   `${BASE_URL}/users/save`,
+    AUTHMAIL:   `${BASE_URL}/mail/authMail`,
     USERUPDATE: `${BASE_URL}/users/update`,
     USERINFO:   `${BASE_URL}/users/info`,
     USERDELETE: `${BASE_URL}/users/delete`,

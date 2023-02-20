@@ -65,7 +65,7 @@ export default function UserInfo(){
             toast.setIsShow(true);
             toast.setMessage('회원탈퇴 되었습니다.');
 
-            navigate('/');
+            navigate('/HealthSNS');
             // navigate('/signIn');
 
         } catch (e) {

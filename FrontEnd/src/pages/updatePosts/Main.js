@@ -213,7 +213,7 @@ export default function UpdatePosts(){
                                     { imageMapList.map((item) => {
                                         return (
                                             <React.Fragment key={item.saveName}>
-                                                <img onClick={handleOnclick} src={`http://localhost:3000/img/${data.uid}/${item.saveName}`} className={`${styles.img}`} />
+                                                <img onClick={handleOnclick} src={`http://${API.BASE}/img/${data.uid}/${item.saveName}`} className={`${styles.img}`} />
                                             </React.Fragment>
                                         ); })
                                     }
