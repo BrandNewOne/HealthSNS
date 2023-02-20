@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/HealthSNS/static/css/main.3f00569e.css",
-    "main.js": "/HealthSNS/static/js/main.ee25c8c2.js",
+    "main.js": "/HealthSNS/static/js/main.fc01692c.js",
     "index.html": "/HealthSNS/index.html",
     "main.3f00569e.css.map": "/HealthSNS/static/css/main.3f00569e.css.map",
-    "main.ee25c8c2.js.map": "/HealthSNS/static/js/main.ee25c8c2.js.map"
+    "main.fc01692c.js.map": "/HealthSNS/static/js/main.fc01692c.js.map"
   },
   "entrypoints": [
     "static/css/main.3f00569e.css",
-    "static/js/main.ee25c8c2.js"
+    "static/js/main.fc01692c.js"
   ]
 }
