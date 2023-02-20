@@ -26,7 +26,8 @@ export default function SginUp(){
         toast.setIsShow(true);
         toast.setMessage('회원가입 되었습니다.');
 
-        navigate('/signIn');
+        // navigate('/signIn');
+        navigate('/');
 
       } catch (error) {
         console.log(error);

@@ -6,6 +6,7 @@ import { SET_ATK_EXP } from '../store/Atk';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { SET_USER } from '../store/User';
+import { API } from '../api/Config';
 import jwt_decode from "jwt-decode";
 import styles from "../style/SignIn.module.css"
 
@@ -17,7 +18,7 @@ export default function SginIn(porps){
   const SignIn = async () => {
     try {
       await axios.post(
-        '/authenticate',
+        `${API.LOGIN}`,
         {
           email: email,
           password: password

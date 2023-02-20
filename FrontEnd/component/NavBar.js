@@ -20,7 +20,8 @@ const NavBar = ({uid}) =>{
             dispatch(DELETE_ATK());
             dispatch(DELETE_USER());
             removeCookieToken();
-            navigate('/signin');
+            navigate('/');
+            // navigate('/signin');
         }
         catch(error){
             console.log(error);

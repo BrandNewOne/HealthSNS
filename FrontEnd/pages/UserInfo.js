@@ -65,7 +65,8 @@ export default function UserInfo(){
             toast.setIsShow(true);
             toast.setMessage('회원탈퇴 되었습니다.');
 
-            navigate('/signIn');
+            navigate('/');
+            // navigate('/signIn');
 
         } catch (e) {
             console.log(e);

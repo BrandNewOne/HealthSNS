@@ -18,7 +18,7 @@ PostRtkAxios.interceptors.request.use(
 	function (config) {
 		const refreshToken = getCookieToken();
 		config.headers.Authorization = `Bearer ${refreshToken}`;
-		config.url = `${API.BASE_URL}/${API.REDIRECT}`;
+		config.url = `${API.REDIRECT}`;
 		config.method = 'post';
 	  return config;
 	},
@@ -43,7 +43,7 @@ PostRtkAxios.interceptors.response.use(
 	function (error) {
 	    // 오류 응답을 처리
 		removeCookieToken();
-		window.location.href='/signin';
+		// window.location.href='/';
 	    return Promise.reject(error);
 	}
 );

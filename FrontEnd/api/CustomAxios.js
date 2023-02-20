@@ -4,10 +4,6 @@ import { API } from './Config';
 import  store  from '../store/index';
 import { PostRtkAxios } from  '../api/PostRtkAxios';
 
-import { DELETE_ATK } from '../store/Atk';
-import { DELETE_USER } from '../store/User';
-import { removeCookieToken } from '../storage/Cookie';
-
 export const CustomAxios = axios.create({
 	timeout: 1000
 	});
@@ -36,33 +32,8 @@ CustomAxios.interceptors.request.use(
 					config.data.id = store.getState().authUser.id;
 				}
 			}
-			// try{
-			// 	const response = await PostRtkAxios(); 
-			// 	accessToken = response.data.atk;
-			// 	if(config.params){
-			// 		if (config.params.id === null){
-			// 			config.params.id = store.getState().authUser.id;
-			// 		}
-			// 		else if (config.params.uid === null){
-			// 			config.params.uid = store.getState().authUser.id;
-			// 		}
-			// 	}
-			// 	if(config.data){
-			// 		if (config.data.id === null){
-			// 			config.data.id = store.getState().authUser.id;
-			// 		}
-			// 	}
-			// }
-			// catch(error){
-			// 	console.log('error',error);
-			// 	store.dispatch(DELETE_ATK());
-			// 	store.dispatch(DELETE_USER());
-			// 	removeCookieToken();
-			// 	window.location.href='/signin';
-			// }
 		}
 		config.headers.Authorization = `Bearer ${accessToken}`;
-		config.baseURL = `${API.BASE_URL}`;
 		
 	    return config;
 	},
