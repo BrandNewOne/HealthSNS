@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/HealthSNS/static/css/main.3f00569e.css",
+    "main.js": "/HealthSNS/static/js/main.937cc78b.js",
+    "index.html": "/HealthSNS/index.html",
+    "main.3f00569e.css.map": "/HealthSNS/static/css/main.3f00569e.css.map",
+    "main.937cc78b.js.map": "/HealthSNS/static/js/main.937cc78b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3f00569e.css",
+    "static/js/main.937cc78b.js"
+  ]
+}
